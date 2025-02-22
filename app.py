@@ -3,7 +3,13 @@ import joblib
 import pandas as pd
 
 # Load the trained model
-model = joblib.load("placement_model.joblib")
+#model = joblib.load("placement_model.joblib")
+if not os.path.exists("placement_model.joblib"):
+    st.error("❌ Model file 'placement_model.joblib' not found! Make sure you uploaded it correctly.")
+else:
+    # Load the trained model
+    model = joblib.load("placement_model.joblib")
+    st.success("✅ Model loaded successfully!"
 
 # Streamlit UI
 st.title("🎓 Placement Predictor")
