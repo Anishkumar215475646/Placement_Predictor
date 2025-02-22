@@ -9,7 +9,7 @@ if not os.path.exists("placement_model.joblib"):
 else:
     # Load the trained model
     model = joblib.load("placement_model.joblib")
-    st.success("✅ Model loaded successfully!"
+    st.success("✅ Model loaded successfully!")
 
 # Streamlit UI
 st.title("🎓 Placement Predictor")
