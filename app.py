@@ -1,17 +1,27 @@
 import streamlit as st
 import os
-os.system("pip install joblib pandas scikit-learn")
 import joblib
 import pandas as pd
 
 # Load the trained model
 #model = joblib.load("placement_model.joblib")
-if not os.path.exists("placement_model.joblib"):
-    st.error("❌ Model file 'placement_model.joblib' not found! Make sure you uploaded it correctly.")
-else:
+# if not os.path.exists("placement_model.joblib"):
+#     st.error("❌ Model file 'placement_model.joblib' not found! Make sure you uploaded it correctly.")
+# else:
     # Load the trained model
+    # model = joblib.load("placement_model.joblib")
+    # st.success("✅ Model loaded successfully!")
+try:
+    import joblib
+except ModuleNotFoundError:
+    st.error("❌ 'joblib' module not found! Ensure it is listed in 'requirements.txt' and redeploy.")
+
+# Load the trained model if joblib is available
+try:
     model = joblib.load("placement_model.joblib")
     st.success("✅ Model loaded successfully!")
+except FileNotFoundError:
+    st.error("❌ Model file 'placement_model.joblib' not found! Ensure it is uploaded correctly.")
 
 # Streamlit UI
 st.title("🎓 Placement Predictor")
